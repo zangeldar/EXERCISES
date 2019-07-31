@@ -35,7 +35,9 @@ namespace _500_BallEvent
         private void button1_Click(object sender, EventArgs e)
         {
             BallEventArgs ballEventArgs = new BallEventArgs((int)trajectoryNum.Value, (int)distanceNum.Value);
-            ball.OnBallInPlay(ballEventArgs);
+            //ball.OnBallInPlay(ballEventArgs);
+            Bat bat = ball.GetNewBat();
+            bat.HitTheBall(ballEventArgs);
         }
     }
 }
