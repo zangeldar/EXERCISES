@@ -20,7 +20,7 @@ namespace BEE_HIVE
         public Form1()
         {
             InitializeComponent();
-            world = new World();
+            world = new World(new BeeMessage(SendMessage));
 
             timer1.Interval = 50;
             timer1.Tick += new EventHandler(RunFrame);
@@ -68,9 +68,14 @@ namespace BEE_HIVE
         private void btnTsReset_Click(object sender, EventArgs e)
         {
             framesRun = 0;
-            world = new World();
+            world = new World(new BeeMessage(SendMessage));
             if (!timer1.Enabled)
                 btnTsStartSimulation.Text = "Start simulation";
+        }
+
+        private void SendMessage(int ID, string Message)
+        {
+            statusStrip1.Items[0].Text = "Bee #" + ID + ": " + Message;
         }
     }
 }

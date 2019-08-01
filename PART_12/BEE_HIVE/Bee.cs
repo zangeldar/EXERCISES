@@ -17,6 +17,8 @@ namespace BEE_HIVE
     }
     class Bee
     {
+        public BeeMessage MessageSender;
+
         private Hive hive;
         private World world;
 
@@ -53,6 +55,7 @@ namespace BEE_HIVE
         public void Go(Random random)
         {
             Age++;
+            BeeState oldState = CurrentState;
             switch (CurrentState)
             {
                 case BeeState.Idle:                                // what's to do when idle?
@@ -126,6 +129,10 @@ namespace BEE_HIVE
                 default:
                     break;
             }
+            if (oldState != CurrentState
+                && MessageSender != null)
+                MessageSender(ID, CurrentState.ToString());
+
         }
 
         private bool MoveTowardsLocation(Point destination)
