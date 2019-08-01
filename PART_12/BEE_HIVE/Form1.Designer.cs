@@ -84,6 +84,7 @@
             this.btnTsStartSimulation.Name = "btnTsStartSimulation";
             this.btnTsStartSimulation.Size = new System.Drawing.Size(95, 22);
             this.btnTsStartSimulation.Text = "Start Simulation";
+            this.btnTsStartSimulation.Click += new System.EventHandler(this.btnTsStartSimulation_Click);
             // 
             // btnTsReset
             // 
@@ -93,6 +94,7 @@
             this.btnTsReset.Name = "btnTsReset";
             this.btnTsReset.Size = new System.Drawing.Size(39, 22);
             this.btnTsReset.Text = "Reset";
+            this.btnTsReset.Click += new System.EventHandler(this.btnTsReset_Click);
             // 
             // lblTsStatus
             // 

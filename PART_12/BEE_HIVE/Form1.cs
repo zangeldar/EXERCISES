@@ -13,11 +13,19 @@ namespace BEE_HIVE
     public partial class Form1 : Form
     {
         private World world;
-        private int framesRun;
+        private Random random = new Random();
+        private DateTime start = DateTime.Now;
+        private DateTime end;
+        private int framesRun = 0;
         public Form1()
         {
             InitializeComponent();
             world = new World();
+
+            timer1.Interval = 50;
+            timer1.Tick += new EventHandler(RunFrame);
+            timer1.Enabled = false;
+            UpdateStats(new TimeSpan());
         }
 
         private void UpdateStats(TimeSpan frameDuration)
@@ -36,6 +44,33 @@ namespace BEE_HIVE
                 FramesRateLbl.Text = string.Format("{0:f0} ({1:f1}ms)", 1000 / milliSeconds, milliSeconds);
             else
                 FramesRateLbl.Text = "N/A";
+        }
+
+        public void RunFrame(object sender, EventArgs e)
+        {
+            framesRun++;
+            world.Go(random);
+            end = DateTime.Now;
+            TimeSpan frameDuration = end - start;
+            start = end;
+            UpdateStats(frameDuration);
+        }
+
+        private void btnTsStartSimulation_Click(object sender, EventArgs e)
+        {
+            timer1.Enabled = !timer1.Enabled;
+            if (timer1.Enabled)
+                btnTsStartSimulation.Text = "Pause simulator";
+            else
+                btnTsStartSimulation.Text = "Resume simulator";
+        }
+
+        private void btnTsReset_Click(object sender, EventArgs e)
+        {
+            framesRun = 0;
+            world = new World();
+            if (!timer1.Enabled)
+                btnTsStartSimulation.Text = "Start simulation";
         }
     }
 }
