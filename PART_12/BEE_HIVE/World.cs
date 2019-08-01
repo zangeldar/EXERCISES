@@ -41,7 +41,7 @@ namespace BEE_HIVE
             }
 
             double totalNectarHarvested = 0;
-            for (int i = Flowers.Count; i >= 0; i--)
+            for (int i = Flowers.Count-1; i >= 0; i--)
             {
                 Flower flower = Flowers[i];
                 flower.Go();
