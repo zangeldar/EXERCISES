@@ -49,7 +49,7 @@
             this.NectarInFlowersLbl = new System.Windows.Forms.Label();
             this.FramesRunLbl = new System.Windows.Forms.Label();
             this.FramesRateLbl = new System.Windows.Forms.Label();
-            this.BeeStatesLb = new System.Windows.Forms.ListBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -232,20 +232,20 @@
             this.FramesRateLbl.Size = new System.Drawing.Size(0, 13);
             this.FramesRateLbl.TabIndex = 11;
             // 
-            // BeeStatesLb
+            // listBox1
             // 
-            this.BeeStatesLb.FormattingEnabled = true;
-            this.BeeStatesLb.Location = new System.Drawing.Point(12, 155);
-            this.BeeStatesLb.Name = "BeeStatesLb";
-            this.BeeStatesLb.Size = new System.Drawing.Size(260, 82);
-            this.BeeStatesLb.TabIndex = 3;
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(12, 155);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(260, 82);
+            this.listBox1.TabIndex = 3;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
-            this.Controls.Add(this.BeeStatesLb);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
@@ -283,7 +283,7 @@
         private System.Windows.Forms.Label NectarInFlowersLbl;
         private System.Windows.Forms.Label FramesRunLbl;
         private System.Windows.Forms.Label FramesRateLbl;
-        private System.Windows.Forms.ListBox BeeStatesLb;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }
 

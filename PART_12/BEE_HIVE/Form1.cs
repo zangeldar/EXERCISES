@@ -45,7 +45,7 @@ namespace BEE_HIVE
             else
                 FramesRateLbl.Text = "N/A";
 
-            UpdateListBoxMy();
+            //UpdateListBoxMy();
         }
         
         private void UpdateListBoxMy()
@@ -78,11 +78,11 @@ namespace BEE_HIVE
                         break;
                 }
             }
-            BeeStatesLb.Items.Clear();
-            BeeStatesLb.Items.Add(String.Format("Idle: {0} {1}", idleBees, HowManyBees(idleBees)));
-            BeeStatesLb.Items.Add(String.Format("FlyingToFlower: {0} {1}", flyingToFlowerBees, HowManyBees(flyingToFlowerBees)));
-            BeeStatesLb.Items.Add(String.Format("GatheringNectar: {0} {1}", gatheringNectarBees, HowManyBees(gatheringNectarBees)));
-            BeeStatesLb.Items.Add(String.Format("ReturningToHive: {0} {1}", returningToHiveBees, HowManyBees(returningToHiveBees)));            
+            listBox1.Items.Clear();
+            listBox1.Items.Add(String.Format("Idle: {0} {1}", idleBees, HowManyBees(idleBees)));
+            listBox1.Items.Add(String.Format("FlyingToFlower: {0} {1}", flyingToFlowerBees, HowManyBees(flyingToFlowerBees)));
+            listBox1.Items.Add(String.Format("GatheringNectar: {0} {1}", gatheringNectarBees, HowManyBees(gatheringNectarBees)));
+            listBox1.Items.Add(String.Format("ReturningToHive: {0} {1}", returningToHiveBees, HowManyBees(returningToHiveBees)));            
         }
         private string HowManyBees(int beesCount)
         {
@@ -121,6 +121,33 @@ namespace BEE_HIVE
         private void SendMessage(int ID, string Message)
         {
             statusStrip1.Items[0].Text = "Bee #" + ID + ": " + Message;
+            var beeGroups =
+                from bee in world.Bees
+                group bee by bee.CurrentState into beeGroup
+                orderby beeGroup.Key
+                select beeGroup;
+            listBox1.Items.Clear();
+
+            foreach (var group in beeGroups)
+            {
+                string s;
+                if (group.Count() == 1)
+                    s = "";
+                else
+                    s = "s";
+
+                listBox1.Items.Add(group.Key.ToString() + ": "
+                    + group.Count() + " bee" + s);
+                if (group.Key == BeeState.Idle
+                    && group.Count() == world.Bees.Count()
+                    && framesRun > 0)
+                {
+                    listBox1.Items.Add("Simualtion ended: all bees are idle");
+                    toolStrip1.Items[0].Text = "Simulation ended";
+                    statusStrip1.Items[0].Text = "Simulation ended";
+                    timer1.Enabled = false;
+                }
+            }
         }
     }
 }
