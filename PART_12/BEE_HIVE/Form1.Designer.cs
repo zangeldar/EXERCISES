@@ -50,6 +50,9 @@
             this.FramesRunLbl = new System.Windows.Forms.Label();
             this.FramesRateLbl = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.открытьToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.сохранитьToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.печатьToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -57,9 +60,14 @@
             // 
             // toolStrip1
             // 
+            this.toolStrip1.CanOverflow = false;
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnTsStartSimulation,
-            this.btnTsReset});
+            this.btnTsReset,
+            this.открытьToolStripButton,
+            this.сохранитьToolStripButton,
+            this.печатьToolStripButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(284, 25);
@@ -240,6 +248,36 @@
             this.listBox1.Size = new System.Drawing.Size(260, 82);
             this.listBox1.TabIndex = 3;
             // 
+            // открытьToolStripButton
+            // 
+            this.открытьToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.открытьToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("открытьToolStripButton.Image")));
+            this.открытьToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.открытьToolStripButton.Name = "открытьToolStripButton";
+            this.открытьToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.открытьToolStripButton.Text = "&Открыть";
+            this.открытьToolStripButton.Click += new System.EventHandler(this.открытьToolStripButton_Click);
+            // 
+            // сохранитьToolStripButton
+            // 
+            this.сохранитьToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.сохранитьToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("сохранитьToolStripButton.Image")));
+            this.сохранитьToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.сохранитьToolStripButton.Name = "сохранитьToolStripButton";
+            this.сохранитьToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.сохранитьToolStripButton.Text = "&Сохранить";
+            this.сохранитьToolStripButton.Click += new System.EventHandler(this.сохранитьToolStripButton_Click);
+            // 
+            // печатьToolStripButton
+            // 
+            this.печатьToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.печатьToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("печатьToolStripButton.Image")));
+            this.печатьToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.печатьToolStripButton.Name = "печатьToolStripButton";
+            this.печатьToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.печатьToolStripButton.Text = "&Печать";
+            this.печатьToolStripButton.Click += new System.EventHandler(this.печатьToolStripButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -284,6 +322,9 @@
         private System.Windows.Forms.Label FramesRunLbl;
         private System.Windows.Forms.Label FramesRateLbl;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ToolStripButton открытьToolStripButton;
+        private System.Windows.Forms.ToolStripButton сохранитьToolStripButton;
+        private System.Windows.Forms.ToolStripButton печатьToolStripButton;
     }
 }
 

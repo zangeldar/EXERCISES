@@ -7,6 +7,7 @@ using System.Drawing;
 
 namespace BEE_HIVE
 {
+    [Serializable]
     class World
     {
         private const double NectarHarvestedPerNewFlower = 50.0;

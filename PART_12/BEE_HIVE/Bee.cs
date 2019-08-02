@@ -15,8 +15,10 @@ namespace BEE_HIVE
         MakingHoney,
         Retired
     }
+    [Serializable]
     class Bee
     {
+        [NonSerialized]
         public BeeMessage MessageSender;
 
         private Hive hive;
