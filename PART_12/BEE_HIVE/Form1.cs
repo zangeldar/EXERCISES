@@ -14,6 +14,10 @@ namespace BEE_HIVE
 {
     public partial class Form1 : Form
     {
+        private HiveForm hiveForm = new HiveForm();
+        private FieldForm fieldForm = new FieldForm();
+        private Renderer renderer;
+
         private World world;
         private Random random = new Random();
         private DateTime start = DateTime.Now;
@@ -28,6 +32,9 @@ namespace BEE_HIVE
             timer1.Tick += new EventHandler(RunFrame);
             timer1.Enabled = false;
             UpdateStats(new TimeSpan());
+
+            hiveForm.Show(this);
+            fieldForm.Show(this);
         }
 
         private void UpdateStats(TimeSpan frameDuration)
