@@ -14,6 +14,7 @@ namespace BEE_HIVE
 {
     public partial class Form1 : Form
     {
+        private int unUsedInt;
         private HiveForm hiveForm = new HiveForm();
         private FieldForm fieldForm = new FieldForm();
         private Renderer renderer;
