@@ -31,13 +31,12 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnTsStartSimulation = new System.Windows.Forms.ToolStripButton();
             this.btnTsReset = new System.Windows.Forms.ToolStripButton();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblTsStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -50,6 +49,7 @@
             this.NectarInFlowersLbl = new System.Windows.Forms.Label();
             this.FramesRunLbl = new System.Windows.Forms.Label();
             this.FramesRateLbl = new System.Windows.Forms.Label();
+            this.BeeStatesLb = new System.Windows.Forms.ListBox();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -65,16 +65,6 @@
             this.toolStrip1.Size = new System.Drawing.Size(284, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lblTsStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 240);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(284, 22);
-            this.statusStrip1.TabIndex = 1;
-            this.statusStrip1.Text = "statusStrip1";
             // 
             // btnTsStartSimulation
             // 
@@ -95,6 +85,16 @@
             this.btnTsReset.Size = new System.Drawing.Size(39, 22);
             this.btnTsReset.Text = "Reset";
             this.btnTsReset.Click += new System.EventHandler(this.btnTsReset_Click);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblTsStatus});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 240);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(284, 22);
+            this.statusStrip1.TabIndex = 1;
+            this.statusStrip1.Text = "statusStrip1";
             // 
             // lblTsStatus
             // 
@@ -129,14 +129,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(260, 118);
             this.tableLayoutPanel1.TabIndex = 2;
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 155);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(260, 82);
-            this.listBox1.TabIndex = 3;
             // 
             // label1
             // 
@@ -240,12 +232,20 @@
             this.FramesRateLbl.Size = new System.Drawing.Size(0, 13);
             this.FramesRateLbl.TabIndex = 11;
             // 
+            // BeeStatesLb
+            // 
+            this.BeeStatesLb.FormattingEnabled = true;
+            this.BeeStatesLb.Location = new System.Drawing.Point(12, 155);
+            this.BeeStatesLb.Name = "BeeStatesLb";
+            this.BeeStatesLb.Size = new System.Drawing.Size(260, 82);
+            this.BeeStatesLb.TabIndex = 3;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.BeeStatesLb);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
@@ -283,7 +283,7 @@
         private System.Windows.Forms.Label NectarInFlowersLbl;
         private System.Windows.Forms.Label FramesRunLbl;
         private System.Windows.Forms.Label FramesRateLbl;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox BeeStatesLb;
     }
 }
 

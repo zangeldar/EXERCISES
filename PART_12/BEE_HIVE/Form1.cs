@@ -44,6 +44,51 @@ namespace BEE_HIVE
                 FramesRateLbl.Text = string.Format("{0:f0} ({1:f1}ms)", 1000 / milliSeconds, milliSeconds);
             else
                 FramesRateLbl.Text = "N/A";
+
+            UpdateListBoxMy();
+        }
+        
+        private void UpdateListBoxMy()
+        {
+            int idleBees = 0;
+            int flyingToFlowerBees = 0;
+            int gatheringNectarBees = 0;
+            int returningToHiveBees = 0;
+            foreach (Bee bee in world.Bees)
+            {
+                switch (bee.CurrentState)
+                {
+                    case BeeState.Idle:
+                        idleBees++;
+                        break;
+                    case BeeState.FlyingToFlower:
+                        flyingToFlowerBees++;
+                        break;
+                    case BeeState.GatheringNectar:
+                        gatheringNectarBees++;
+                        break;
+                    case BeeState.ReturningToHive:
+                        returningToHiveBees++;
+                        break;
+                    case BeeState.MakingHoney:
+                        break;
+                    case BeeState.Retired:
+                        break;
+                    default:
+                        break;
+                }
+            }
+            BeeStatesLb.Items.Clear();
+            BeeStatesLb.Items.Add(String.Format("Idle: {0} {1}", idleBees, HowManyBees(idleBees)));
+            BeeStatesLb.Items.Add(String.Format("FlyingToFlower: {0} {1}", flyingToFlowerBees, HowManyBees(flyingToFlowerBees)));
+            BeeStatesLb.Items.Add(String.Format("GatheringNectar: {0} {1}", gatheringNectarBees, HowManyBees(gatheringNectarBees)));
+            BeeStatesLb.Items.Add(String.Format("ReturningToHive: {0} {1}", returningToHiveBees, HowManyBees(returningToHiveBees)));            
+        }
+        private string HowManyBees(int beesCount)
+        {
+            if (beesCount < 2)
+                return "bee";
+            return "bees";
         }
 
         public void RunFrame(object sender, EventArgs e)
