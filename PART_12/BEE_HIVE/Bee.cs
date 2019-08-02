@@ -6,7 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BEE_HIVE
-{    enum BeeState
+{    
+    enum BeeState
     {
         Idle,
         FlyingToFlower,

@@ -26,15 +26,31 @@ namespace BEE_HIVE
         public Form1()
         {
             InitializeComponent();
-            world = new World(new BeeMessage(SendMessage));
+
+            MoveChildForms();
+            hiveForm.Show(this);
+            fieldForm.Show(this);
+            
+            ResetSimulator();
 
             timer1.Interval = 50;
             timer1.Tick += new EventHandler(RunFrame);
             timer1.Enabled = false;
-            UpdateStats(new TimeSpan());
+            UpdateStats(new TimeSpan());            
+        }
+        private void MoveChildForms()
+        {
+            //throw new NotImplementedException();
+            hiveForm.Location = new Point(Location.X + Width + 10, Location.Y);
+            fieldForm.Location = new Point(Location.X, Location.Y + Height + 10);
+        }
 
-            hiveForm.Show(this);
-            fieldForm.Show(this);
+        private void ResetSimulator()
+        {
+            //throw new NotImplementedException();
+            framesRun = 0;
+            world = new World(new BeeMessage(SendMessage));
+            renderer = new Renderer(world, hiveForm, fieldForm);
         }
 
         private void UpdateStats(TimeSpan frameDuration)
@@ -104,6 +120,7 @@ namespace BEE_HIVE
         {
             framesRun++;
             world.Go(random);
+            renderer.Render();
             end = DateTime.Now;
             TimeSpan frameDuration = end - start;
             start = end;
@@ -121,8 +138,8 @@ namespace BEE_HIVE
 
         private void btnTsReset_Click(object sender, EventArgs e)
         {
-            framesRun = 0;
-            world = new World(new BeeMessage(SendMessage));
+            renderer.Reset();
+            ResetSimulator();
             if (!timer1.Enabled)
                 btnTsStartSimulation.Text = "Start simulation";
         }
@@ -199,8 +216,11 @@ namespace BEE_HIVE
             world.Hive.MessageSender = new BeeMessage(SendMessage);
             foreach (Bee bee in world.Bees)
                 bee.MessageSender = new BeeMessage(SendMessage);
+
+            renderer.Reset();
+            renderer = new Renderer(world, hiveForm, fieldForm);
             if (enabled)
-                timer1.Start();
+                timer1.Start();            
         }
 
         private void сохранитьToolStripButton_Click(object sender, EventArgs e)
@@ -249,6 +269,11 @@ namespace BEE_HIVE
         private void печатьToolStripButton_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Form1_Move(object sender, EventArgs e)
+        {
+            MoveChildForms();
         }
     }
 }
