@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BEE_HIVE.Properties {
+namespace _619_HiveSimulator.Properties {
     using System;
     
     

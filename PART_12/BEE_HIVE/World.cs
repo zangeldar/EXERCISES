@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 
-namespace BEE_HIVE
+namespace _619_HiveSimulator
 {
     [Serializable]
     class World

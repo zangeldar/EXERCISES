@@ -1,4 +1,4 @@
-﻿namespace BEE_HIVE
+﻿namespace _619_HiveSimulator
 {
     partial class Form1
     {

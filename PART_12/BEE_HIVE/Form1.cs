@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BEE_HIVE
+namespace _619_HiveSimulator
 {
     public partial class Form1 : Form
     {

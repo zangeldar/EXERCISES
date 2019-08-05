@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BEE_HIVE
+namespace _619_HiveSimulator
 {    
     enum BeeState
     {
