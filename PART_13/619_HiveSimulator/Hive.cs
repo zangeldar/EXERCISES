@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 namespace _619_HiveSimulator
 {
     [Serializable]
-    class Hive
+    public class Hive
     {
         [NonSerialized]
         public BeeMessage MessageSender;
 
         private World world;
 
-        const int InitialBees = 10;//6
+        const int InitialBees = 6;//6
         const double InitialHoney = 3.2;
         const double MaximumHoney = 15.0;
         const double NectarHoneyRatio = 0.25;
@@ -30,7 +30,7 @@ namespace _619_HiveSimulator
         private void InitializeLocations()
         {
             locations = new Dictionary<string, Point>();
-            locations.Add("Entrance", new Point(715, 75));
+            locations.Add("Entrance", new Point(610, 95));
             locations.Add("Nursery", new Point(70, 140));
             locations.Add("HoneyFactory", new Point(160, 60));
             locations.Add("Exit", new Point(190, 170));
@@ -88,7 +88,7 @@ namespace _619_HiveSimulator
         {
             if (world.Bees.Count < MaximumBees          // Если мировой максимум пчел не превышен
                     && Honey > MinimumHoneyForCreationBees     // Если меда достаточно, то
-                    && random.Next(2) == 1)            //  в 10% случаев
+                    && random.Next(10) == 1)            //  в 10% случаев
                 AddBee(random);                         //  создаем пчелу.
         }
     }

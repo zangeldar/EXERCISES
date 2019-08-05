@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace _619_HiveSimulator
 {    
-    enum BeeState
+    public enum BeeState
     {
         Idle,
         FlyingToFlower,
@@ -17,7 +17,7 @@ namespace _619_HiveSimulator
         Retired
     }
     [Serializable]
-    class Bee
+    public class Bee
     {
         [NonSerialized]
         public BeeMessage MessageSender;
