@@ -54,6 +54,7 @@
             this.FramesRateLbl = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.btnTsSettings = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -68,7 +69,8 @@
             this.btnTsReset,
             this.открытьToolStripButton,
             this.сохранитьToolStripButton,
-            this.печатьToolStripButton});
+            this.печатьToolStripButton,
+            this.btnTsSettings});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(284, 25);
@@ -285,6 +287,16 @@
             this.timer2.Interval = 150;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
+            // btnTsSettings
+            // 
+            this.btnTsSettings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnTsSettings.Image = ((System.Drawing.Image)(resources.GetObject("btnTsSettings.Image")));
+            this.btnTsSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnTsSettings.Name = "btnTsSettings";
+            this.btnTsSettings.Size = new System.Drawing.Size(53, 22);
+            this.btnTsSettings.Text = "Settings";
+            this.btnTsSettings.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -335,6 +347,7 @@
         private System.Windows.Forms.ToolStripButton сохранитьToolStripButton;
         private System.Windows.Forms.ToolStripButton печатьToolStripButton;
         private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.ToolStripButton btnTsSettings;
     }
 }
 

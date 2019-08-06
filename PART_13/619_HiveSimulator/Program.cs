@@ -18,5 +18,14 @@ namespace _619_HiveSimulator
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
         }
+
+        static public string GetPathToExe()
+        {
+            string result = @Application.ExecutablePath;
+            int posOfLastSlash = result.LastIndexOf('\\');
+            posOfLastSlash = Math.Max(posOfLastSlash, result.LastIndexOf('/'));
+            result = @result.Substring(0, posOfLastSlash);
+            return result;
+        }
     }
 }

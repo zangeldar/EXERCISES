@@ -20,6 +20,8 @@ namespace _619_HiveSimulator
         private FieldForm fieldForm = new FieldForm();
         private Renderer renderer;
 
+        private Settings settings;
+
         private World world;
         private Random random = new Random();
         private DateTime start = DateTime.Now;
@@ -32,10 +34,11 @@ namespace _619_HiveSimulator
             MoveChildForms();
             hiveForm.Show(this);
             fieldForm.Show(this);
-            
-            ResetSimulator();
 
             timer1.Interval = 50;
+
+            ResetSimulator();
+            
             timer1.Tick += new EventHandler(RunFrame);
             timer1.Enabled = false;
             UpdateStats(new TimeSpan());            
@@ -46,10 +49,16 @@ namespace _619_HiveSimulator
             fieldForm.Location = new Point(Location.X, Location.Y + Height + 10);
         }
 
-        private void ResetSimulator()
+        private void ResetSimulator(Settings settings = null)
         {
+            if (settings == null)
+                settings = new Settings();
+            this.settings = settings;
+
+            timer1.Interval = this.settings.FrameInterval;
+
             framesRun = 0;
-            world = new World(new BeeMessage(SendMessage));
+            world = new World(new BeeMessage(SendMessage), this.settings);
             renderer = new Renderer(world, hiveForm, fieldForm);
         }
 
@@ -139,7 +148,8 @@ namespace _619_HiveSimulator
         private void btnTsReset_Click(object sender, EventArgs e)
         {
             //renderer.Reset();
-            ResetSimulator();
+            ResetSimulator(settings);
+            UpdateStats(new TimeSpan());
             if (!timer1.Enabled)
                 btnTsStartSimulation.Text = "Start simulation";
         }
@@ -190,7 +200,7 @@ namespace _619_HiveSimulator
             openDialog.CheckPathExists = true;
             openDialog.CheckFileExists = true;
             openDialog.Title = "Choose a file with a simulation to load";
-            openDialog.InitialDirectory = GetPathToExe();
+            openDialog.InitialDirectory = Program.GetPathToExe();
 
             if (openDialog.ShowDialog() == DialogResult.OK)
             {
@@ -234,7 +244,7 @@ namespace _619_HiveSimulator
             //saveDialog.CheckFileExists = true;
             saveDialog.CheckPathExists = true;
             saveDialog.Title = "Choose a file to save the current simulation";
-            saveDialog.InitialDirectory = GetPathToExe();
+            saveDialog.InitialDirectory = Program.GetPathToExe();
             if (saveDialog.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -255,15 +265,6 @@ namespace _619_HiveSimulator
             }
             if (enabled)
                 timer1.Start();
-        }
-
-        private string GetPathToExe()
-        {
-            string result = @Application.ExecutablePath;
-            int posOfLastSlash = result.LastIndexOf('\\');
-            posOfLastSlash = Math.Max(posOfLastSlash, result.LastIndexOf('/'));
-            result = @result.Substring(0, posOfLastSlash);
-            return result;
         }
 
         private void печатьToolStripButton_Click(object sender, EventArgs e)
@@ -376,6 +377,33 @@ namespace _619_HiveSimulator
         private void timer2_Tick(object sender, EventArgs e)
         {
             renderer.AnimateBees();
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            SettingsForm setForm = new SettingsForm(settings, LoadSettings);
+            setForm.ShowDialog(this);
+        }
+
+        private void LoadSettings(Settings newSettings)
+        {
+            this.settings = newSettings;
+
+            ApplySettings();
+
+            statusStrip1.Items[0].Text = "New setting is applied!";
+
+            if (framesRun == 0)
+            {
+                ResetSimulator(settings);
+                UpdateStats(new TimeSpan());
+            }                
+        }
+
+        private void ApplySettings()
+        {
+            timer1.Interval = settings.FrameInterval;
+            world.LoadSettings(settings);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace _619_HiveSimulator
     [Serializable]
     public class World
     {
-        private const double NectarHarvestedPerNewFlower = 50.0;
+        //private const double NectarHarvestedPerNewFlower = 50.0;        
         private const int FieldMinX = 15;
         private const int FieldMinY = 177;
         private const int FieldMaxX = 690;
@@ -20,10 +20,19 @@ namespace _619_HiveSimulator
         public List<Bee> Bees;
         public List<Flower> Flowers;
 
-        public World(BeeMessage messageSender){
+        private WorldSettings worldSettings;
+        private Settings settings;
+
+        public World(BeeMessage messageSender, Settings settings = null){
             Bees = new List<Bee>();
             Flowers = new List<Flower>();
-            Hive = new Hive(this, messageSender);
+
+            if (settings == null)
+                settings = new Settings();
+            this.settings = settings;
+            this.worldSettings = settings.WorldSettings;
+
+            Hive = new Hive(this, messageSender, this.settings.HiveSettings);
             Random random = new Random();
             for (int i = 0; i < 10; i++)
                 AddFlower(random);
@@ -51,7 +60,8 @@ namespace _619_HiveSimulator
                     Flowers.Remove(flower);
             }
 
-            if (totalNectarHarvested > NectarHarvestedPerNewFlower)
+            //if (totalNectarHarvested > NectarHarvestedPerNewFlower)
+            if (totalNectarHarvested > worldSettings.NectarHarvestedPerNewFlower)
             {
                 foreach (Flower flower in Flowers)
                     flower.NectarHarvested = 0;
@@ -65,6 +75,13 @@ namespace _619_HiveSimulator
                                         random.Next(FieldMinY, FieldMaxY));
             Flower newFlower = new Flower(location, random);
             Flowers.Add(newFlower);
+        }
+
+        public void LoadSettings(Settings settings)
+        {
+            this.settings = settings;
+            this.worldSettings = settings.WorldSettings;
+            Hive.ApplySettings(settings.HiveSettings);
         }
     }
 }

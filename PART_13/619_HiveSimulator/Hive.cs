@@ -15,13 +15,8 @@ namespace _619_HiveSimulator
 
         private World world;
 
-        const int InitialBees = 6;//6
-        const double InitialHoney = 3.2;
-        const double MaximumHoney = 15.0;
-        const double NectarHoneyRatio = 0.25;
-        const double MinimumHoneyForCreationBees = 4.0;
-        const int MaximumBees = 20;//8
-
+        private HiveSettings hiveSettings;
+            
         private int beeCount;
         private Dictionary<string, Point> locations;
 
@@ -44,15 +39,19 @@ namespace _619_HiveSimulator
                 throw new ArgumentException("Unknown location: " + location);
         }
 
-        public Hive(World world, BeeMessage MessageSender)
+        public Hive(World world, BeeMessage MessageSender, HiveSettings hiveSettings = null)
         {
             this.MessageSender = MessageSender;
             this.world = world;
 
-            Honey = InitialHoney;
+            if (hiveSettings == null)
+                hiveSettings = new HiveSettings();
+            this.hiveSettings = hiveSettings;
+
+            Honey = hiveSettings.InitialHoney;
             InitializeLocations();
             Random random = new Random();
-            for (int i = 0; i < InitialBees; i++)
+            for (int i = 0; i < hiveSettings.InitialBees; i++)
             {
                 AddBee(random);
             }
@@ -60,8 +59,8 @@ namespace _619_HiveSimulator
 
         public bool AddHoney(double nectar)
         {
-            double honeyToAdd = nectar * NectarHoneyRatio;
-            if (honeyToAdd + Honey > MaximumHoney)
+            double honeyToAdd = nectar * hiveSettings.NectarHoneyRatio;
+            if (honeyToAdd + Honey > hiveSettings.MaximumHoney)
                 return false;
             Honey += honeyToAdd;
             return true;
@@ -86,10 +85,15 @@ namespace _619_HiveSimulator
         }
         public void Go(Random random)
         {
-            if (world.Bees.Count < MaximumBees          // Если мировой максимум пчел не превышен
-                    && Honey > MinimumHoneyForCreationBees     // Если меда достаточно, то
+            if (world.Bees.Count < hiveSettings.MaximumBees          // Если мировой максимум пчел не превышен
+                    && Honey > hiveSettings.MinimumHoneyForCreationBees     // Если меда достаточно, то
                     && random.Next(10) == 1)            //  в 10% случаев
                 AddBee(random);                         //  создаем пчелу.
+        }
+
+        public void ApplySettings(HiveSettings hiveSettings)
+        {
+            this.hiveSettings = hiveSettings;
         }
     }
 }
