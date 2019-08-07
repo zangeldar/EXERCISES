@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace _640_GarbageCollector
+namespace _654_OUT
 {
     static class Program
     {
@@ -16,15 +16,7 @@ namespace _640_GarbageCollector
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());            
-        }
-        static public string GetPathToExe()
-        {
-            string result = @Application.ExecutablePath;
-            int posOfLastSlash = result.LastIndexOf('\\');
-            posOfLastSlash = Math.Max(posOfLastSlash, result.LastIndexOf('/'));
-            result = @result.Substring(0, posOfLastSlash);
-            return result;
+            Application.Run(new Form1());
         }
     }
 }
